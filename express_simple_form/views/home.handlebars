@@ -1,11 +1,14 @@
 <h1>{{ title }}</h1>
 
-{{!-- <form method="post" action="/form/signup">
-  <input name="username" />
-  <label name= "name"> Please enter your name</label>
-  <button type="submit">Send</button>
-</form> --}}
+<form method="post" action="/students/add">
+    <input name="username" />
+    <button type="submit">Send</button>
+</form>
 
-{{#each variable}}
+
+
+<ul>
+    {{#each students}}
     <li>{{this}}</li>
-{{/each}}
+    {{/each}}
+</ul>

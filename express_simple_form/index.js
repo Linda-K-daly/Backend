@@ -1,11 +1,11 @@
 const express = require('express');
 const exphbrs = require ('express-handlebars')
-
-
 const app = express();
 const port = 3000;
 
-const students = ['Jean', 'Binta', 'Agathe', 'Adil'];
+const students = [];
+
+
 
 app.set('view engine', 'handlebars');
 
@@ -16,19 +16,26 @@ app.engine('handlebars', exphbrs({
 
 
 
+
+app.get('/', function(req, res) {
+  res.render('home', {
+    students: students
+  });
+  
+});
+
 app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
-// app.post('/form/signup', (req, res) => {
-//   console.log('form parameter', req.body.username); 
-// });
-
-app.get('/students', function(req, res) {
-  res.render('home', {
-    students: ['Jean', 'Binta', 'Agathe', 'Adil']
+app.post('/students/add', (req, res) => {
+    const username = req.body.username;
+    students.push(username);
+    res.render ('studentsadded', {
+      username: username
+    });  
   });
-});
+
 
 app.listen(port, () => {
     console.log(`Server started on port: ${port}`);
