@@ -18,9 +18,8 @@ app.engine('handlebars', exphbrs({
 
 
 app.get('/', function(req, res) {
-  res.render('home', {
-    students: students
-  });
+  res.render("Welcome to Upload"
+  );
   
 });
 
@@ -28,13 +27,15 @@ app.use(express.urlencoded({ extended: true }));
 // parse application/json
 app.use(express.json());
 
-app.post('/students/add', (req, res) => {
-    const username = req.body.username;
-    students.push(username);
-    res.render ('studentsadded', {
-      username: username
-    });  
-  });
+app.use(express.static('public'));
+
+// app.post('/students/add', (req, res) => {
+//     const username = req.body.username;
+//     students.push(username);
+//     res.render ('studentsadded', {
+//       username: username
+//     });  
+//   });
 
 
 app.listen(port, () => {
