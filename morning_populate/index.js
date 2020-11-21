@@ -6,8 +6,8 @@ async function morning() {
         { useNewUrlParser: true, useUnifiedTopology: true });
     // err => console.error(err))
 
-    const AdressModel = require('./models/Adress');
-    const StudentModel = require('./models/Student');
+    const AdressModel = require('./models/adress');
+    const StudentModel = require('./models/student');
 
 
 
@@ -52,13 +52,13 @@ async function morning() {
 
 
     StudentModel
-        .findOne({adressId})
-        .populate('Adress')
-        .exec((err,student1) => {
-            console.log ('the id is', adress1._id )
+        .findOne({_id: student1._id})
+        .populate('adress')
+        .exec((err,result) => {
+            console.log ('le resultat est', result )
         });
 
-
+    saveData(student,adress, )
 }
 
 morning()
