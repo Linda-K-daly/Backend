@@ -1,0 +1,46 @@
+{{#if isUserLogged}}
+{{>navLogin}}
+{{else}}
+{{>navLogout}}
+{{/if}}
+
+<form action='/signup' method='POST'>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip01">First name</label>
+            <input type="text" placeholder="Firstname" name="firstname" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip02">Surname</label>
+            <input type="text" placeholder="Surname" name="surname" />
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Username</label>
+            <input type="text" placeholder="Username" name="username" />
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="validationTooltip03">Password</label>
+            <input type="password" placeholder="Password" name="password" />
+        </div>
+    </div>
+    <div class="row">
+        <input type="file" name='image' />
+        <div class="col-md-6 mb-3">
+            <button class="btn btn-primary " type="submit">Submit form</button>
+        </div>
+    </div>
+    ​
+</form>
+
+
+{{!-- <form action='/signup' method='POST'>
+
+    <h4> Username </h4>
+    <input type="text" placeholder="Username" name="username" />
+    <h4> Password </h4>
+    <input type="password" placeholder="Password" name="password" />
+
+    <button type="submit">Submit</button>
+</form> --}}

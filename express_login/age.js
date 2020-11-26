@@ -1,8 +1,8 @@
 
 
-const ageCalculator = function (date) {
+const ageCalculator = function (dateOfbirth) {
   var today = new Date();
-  var birthday = new Date(date)
+  var birthday = new Date(dateOfbirth)
   var age = 0;
 
   age = today.getFullYear() - birthday.getFullYear();

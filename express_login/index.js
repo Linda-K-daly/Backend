@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb://localhost:27017/authentication_exercise",
+  "mongodb://localhost:27017/authentication_exercise",
   {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -46,28 +46,28 @@ app.use(passport.session());
 // Passport configuration
 passport.use(
   new LocalStrategy(
-  // User.authenticate()));
+    // User.authenticate()));
     {
       usernameField: "email",
       passwordField: "password",
     },
     async (email, password, done) => {
-        console.log("email", email);
-        console.log("password", password);
-        console.log("done",done);
-        try {
-            const user = await User.findOne({email})
-            if (!user) return done(null,false);
-            if (user.password == password)
-              return done(null, user)
+      console.log("email", email);
+      console.log("password", password);
+      console.log("done", done);
+      try {
+        const user = await User.findOne({ email })
+        if (!user) return done(null, false);
+        if (user.password == password)
+          return done(null, user)
 
-        } catch (err){
-          console.error(err);
-          done(err)
-        }
+      } catch (err) {
+        console.error(err);
+        done(err)
+      }
     }
   )
-); 
+);
 
 
 
@@ -84,9 +84,9 @@ app.get("/admin", (req, res) => {
   if (req.isAuthenticated()) {
     console.log(req.user);
     res.render("admin", {
-        firstname: req.user.firstname,
-        surname: req.user.surname,
-        dateOfbirth:age(req.user.dateOfbirth),
+      firstname: req.user.firstname,
+      surname: req.user.surname,
+      age: age(req.user.dateOfbirth),
     });
   } else {
     res.redirect("/");
@@ -107,21 +107,21 @@ app.get("/signup", (req, res) => {
 
 
 app.post("/signup", (req, res, next) => {
-    const {username, email, password, firstname,surname,dateOfbirth} = req.body;
+  const { username, email, password, firstname, surname, dateOfbirth } = req.body;
   User.create({
-      username,
-      email,
-      password,
-      firstname,
-      surname,
-      dateOfbirth,
-    }, (err, user) => {
-      if (err) {
-        return res.status(500).send(err)
-      } 
-      next()
-    })
-}, passport.authenticate("local"), (req,res) => res.redirect("/admin"))
+    username,
+    email,
+    password,
+    firstname,
+    surname,
+    dateOfbirth,
+  }, (err, user) => {
+    if (err) {
+      return res.status(500).send(err)
+    }
+    next()
+  })
+}, passport.authenticate("local"), (req, res) => res.redirect("/admin"))
 
 
 app.get("/login", (req, res) => {

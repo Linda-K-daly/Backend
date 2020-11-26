@@ -1,0 +1,11 @@
+{{#if isUserLogged}}
+{{>navLogin}}
+{{else}}
+{{>navLogout}}
+{{/if}}
+
+
+<form enctype='multipart/form-data' action='/upload' method='post'>
+  <input type="file" name='image'/>
+  <button type="submit">Submit</button>
+</form>
