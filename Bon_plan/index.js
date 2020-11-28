@@ -19,7 +19,9 @@ var usersRoutes = require('./controllers/users');
 var productsRoutes = require('./controllers/products');
 // Handlebars.registerPartial('navLogin', '{{{navLogin}}}')
 
+require('dotenv').config();
 
+const { PORT, MONGODB_URI, API_KEY } = process.env;
 const port = process.env.PORT || 3000;
 
 mongoose.connect(
